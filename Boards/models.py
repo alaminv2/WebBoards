@@ -14,11 +14,12 @@ class Boards(models.Model):
 class Topics(models.Model):
     subject = models.CharField(max_length=100)
     board_id = models.ForeignKey(Boards, on_delete=models.CASCADE, related_name='topics')
-    starter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='topic_starter')
+    starter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='topics')
     created_at = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.subject
 
 
 
@@ -28,4 +29,4 @@ class Posts(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
-    updated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='+')
+    updated_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='+')
