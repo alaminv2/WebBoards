@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block titleblock %} New Topic {% endblock %}
+
+{% block breadcrumbblock %}
+<li class="breadcrumb-item"><a href="{% url 'app_boards:home' %}">Boards</a></li>
+<li class="breadcrumb-item"><a href="{% url 'app_boards:board_topics' board_id=board.pk %}">{{board.name}}</a></li>
+<li class="breadcrumb-item active">New Topics</li>
+{% endblock %}
+
+
+{% block bodyblock %}
+<form method="POST" novalidate>
+    {% csrf_token %}
+    {% include 'includes/form.html' %}
+    <button type="submit" class="btn btn-success">Post</button>
+</form>
+{% endblock %}
