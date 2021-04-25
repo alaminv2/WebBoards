@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
-
-{% block titleblock %}Create Topics{% endblock %}
+{% load widget_tweaks %}
+{% block titleblock %}Topics{% endblock %}
 
 {% block breadcrumbblock %}
 <a href="{% url 'app_boards:home' %}">
@@ -11,9 +10,9 @@
 
 {% block bodyblock %}
 <h1>Create Topic</h1>
-<form method="POST">
+<form method="POST" novalidate>
     {% csrf_token %}
-    {{form|crispy}}
+    {% include 'includes/form.html' %}
     <button type="submit">Create</button>
 </form>
 {% endblock %}

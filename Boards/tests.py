@@ -140,4 +140,4 @@ class NewTopicTest(TestCase):
         response = self.client.get(url)
         form = response.context.get('form')
         self.assertIsInstance(form, TopicForm)
-        print('space = ', int(' '))
+        # print('space = ', int(' '))
